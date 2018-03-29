@@ -15,6 +15,28 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class ProfessorsListPage {
 
+  searchIsVisible = false;
+  professorsList = [
+    {
+      name: 'Przemyslaw Pawluk',
+      img: 'assets/imgs/logo.png',
+      class: 'Web Development'
+
+    },
+    {
+      name: 'Tom',
+      img: 'assets/imgs/logo.png',
+      class: 'IOS Development'
+      
+    },
+    {
+      name: 'Viktor Zaytsev',
+      img: 'assets/imgs/logo.png',
+      class: 'Android Development'
+      
+    }
+  ]
+
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
