@@ -1,12 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
-/**
- * Generated class for the ProfessorsListPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { ProfessorDetailPage } from '../professor-detail/professor-detail'
 
 @IonicPage()
 @Component({
@@ -35,13 +30,19 @@ export class ProfessorsListPage {
       class: 'Android Development'
       
     }
-  ]
+  ];
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad ProfessorsListPage');
+  
+  }
+
+  goToProfessorDetailPage(professorDetails){
+    this.navCtrl.push(ProfessorDetailPage, {
+      professor : professorDetails
+    })
   }
 
 }

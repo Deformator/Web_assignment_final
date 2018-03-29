@@ -1,0 +1,25 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>professorDetailPage</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+    <ion-card>
+        <ion-card-header>
+          {{professor.name}}
+        </ion-card-header>
+        <ion-card-content>
+          <ion-item>
+            <ion-avatar item-start>
+                <img src='{{professor.img}}'>
+              </ion-avatar>
+              <h3>{{professor.class}}</h3>
+            </ion-item>
+          
+        </ion-card-content>
+      </ion-card>
+</ion-content>

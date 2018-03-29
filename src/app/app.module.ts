@@ -7,7 +7,9 @@ import { FeedbackPage } from '../pages/feedback/feedback';
 import { CourseDetailsPage } from '../pages/courseDetails/courseDetails';
 import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
-import { ProfessorsListPage } from '../pages/professors-list/professors-list'
+import { ProfessorsListPage } from '../pages/professors-list/professors-list';
+import { ProfessorDetailPage } from '../pages/professor-detail/professor-detail';
+import { ClassDetailPage } from '../pages/class-detail/class-detail';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -19,7 +21,9 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     CourseDetailsPage,
     HomePage,
     TabsPage,
-    ProfessorsListPage
+    ProfessorsListPage,
+    ProfessorDetailPage,
+    ClassDetailPage
   ],
   imports: [
     BrowserModule,
@@ -32,7 +36,9 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     CourseDetailsPage,
     HomePage,
     TabsPage,
-    ProfessorsListPage
+    ProfessorsListPage,
+    ProfessorDetailPage,
+    ClassDetailPage
   ],
   providers: [
     StatusBar,
