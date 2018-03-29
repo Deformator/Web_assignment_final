@@ -30,7 +30,7 @@
           <ion-list-header color='light'>
             <h6>{{semester.title}}</h6>
           </ion-list-header>
-          <ion-item *ngFor='let class of semester.classes'>
+          <ion-item *ngFor='let class of semester.classes' (click)='goToClassDetailPage(class)'>
             <button ion-item no-lines>{{class}}</button>
           </ion-item>
         </ion-list>

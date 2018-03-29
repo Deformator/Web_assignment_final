@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
-import { ProfessorsListPage } from '../professors-list/professors-list'
+import { ProfessorsListPage } from '../professors-list/professors-list';
+import { ClassDetailPage }  from '../class-detail/class-detail';
 
 @Component({
   selector: 'page-courseDetails',
@@ -42,6 +43,10 @@ export class CourseDetailsPage {
     this.navCtrl.push(ProfessorsListPage)
   }
 
-  
+  goToClassDetailPage(classDetails){
+    this.navCtrl.push(ClassDetailPage, {
+      class: classDetails
+    })
+  }
 
 }
