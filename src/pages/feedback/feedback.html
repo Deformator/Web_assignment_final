@@ -7,24 +7,29 @@
 </ion-header>
 
 <ion-content padding>
-    <ion-item>
-        <ion-label color="primary" floating>Name</ion-label>
-        <ion-input type="text"></ion-input>
-      </ion-item>  <ion-item>
-          <ion-label color="primary" floating>Your Feedback</ion-label>
-          <ion-input type="text"></ion-input>
+  <ion-item>
+    <ion-label color="primary" floating>Name</ion-label>
+    <ion-input type="text"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label color="primary" floating>Your Feedback</ion-label>
+    <ion-input type="text"></ion-input>
+  
+  </ion-item>
+<ion-item no-lines>
+    <button item-right ion-button default (click)='sendFeedback()'>Send</button>
+</ion-item>
+  <ion-list padding-top>
+    <ion-card *ngFor='let feedback of allFeedbacks'>
+      <ion-card-header>
+        <h2>{{feedback.name}}</h2>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-item>
+          <h3>{{feedback.description}}</h3>
+          <p text-right>{{feedback.time}}</p>
         </ion-item>
-        <ion-list padding-top>
-            <ion-card *ngFor='let feedback of allFeedbacks'> 
-                <ion-card-header>
-                  <h2>{{feedback.name}}</h2>
-                </ion-card-header>
-                <ion-card-content>
-                  <ion-item>
-                   <h3>{{feedback.description}}</h3>
-                    <p text-right>{{feedback.time}}</p>
-                    </ion-item>         
-                </ion-card-content>
-              </ion-card>
-        </ion-list>
+      </ion-card-content>
+    </ion-card>
+  </ion-list>
 </ion-content>

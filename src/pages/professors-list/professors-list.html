@@ -12,13 +12,10 @@
 </ion-header>
 
 <ion-content padding>
-    <ion-searchbar *ngIf='searchIsVisible'
-    [(ngModel)]="myInput"
-    [showCancelButton]="shouldShowCancel"
-    (ionInput)="onInput($event)"
-    (ionCancel)="onCancel($event)">
+    <ion-searchbar *ngIf='searchIsVisible' (ionInput)="getItems($event)">
+    
   </ion-searchbar>
-    <ion-list >
+    <ion-list no-lines>
         <ion-item *ngFor='let professor of professorsList' (click)='goToProfessorDetailPage(professor)'>
           <ion-avatar item-start>
             <img src='{{professor.img}}'>

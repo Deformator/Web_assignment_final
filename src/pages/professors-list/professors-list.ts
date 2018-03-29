@@ -11,7 +11,25 @@ import { ProfessorDetailPage } from '../professor-detail/professor-detail'
 export class ProfessorsListPage {
 
   searchIsVisible = false;
-  professorsList = [
+  searchQuery: string = '';
+  professorsList = [];
+
+  constructor(public navCtrl: NavController, public navParams: NavParams) {
+    this.initializeItems()
+  }
+
+  ionViewDidLoad() {
+  
+  }
+
+  goToProfessorDetailPage(professorDetails){
+    this.navCtrl.push(ProfessorDetailPage, {
+      professor : professorDetails
+    })
+  }
+
+  initializeItems() {
+   this.professorsList = [
     {
       name: 'Przemyslaw Pawluk',
       img: 'assets/imgs/logo.png',
@@ -31,18 +49,21 @@ export class ProfessorsListPage {
       
     }
   ];
-
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
-  ionViewDidLoad() {
-  
-  }
+  getItems(ev: any) {
+    // Reset items back to all of the items
+    this.initializeItems();
 
-  goToProfessorDetailPage(professorDetails){
-    this.navCtrl.push(ProfessorDetailPage, {
-      professor : professorDetails
-    })
+    // set val to the value of the searchbar
+    let val = ev.target.value;
+
+    // if the value is an empty string don't filter the items
+    if (val && val.trim() != '') {
+      this.professorsList = this.professorsList.filter((professor) => {
+        return (professor.name.toLowerCase().indexOf(val.toLowerCase()) > -1);
+      })
+    }
   }
 
 }
