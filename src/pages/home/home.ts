@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
+import { FirebaseProvider } from '../../providers/firebase/firebase';
+
 
 @Component({
   selector: 'page-home',
@@ -7,14 +9,23 @@ import { NavController } from 'ionic-angular';
 })
 export class HomePage {
 
- admissionRequirements =['A **post-secondary diploma** or degree in computer science or computer programming',
-                          'Proof of English proficiency',
-                          'Application deadline: **May**'];
+  admissionRequirements = [];
 
-  programStartInfo = "Fall 2018";
+  programStartInfo: any;
 
-  constructor(public navCtrl: NavController) {
-
+  constructor(private fireProvider: FirebaseProvider, public navCtrl: NavController) {
+    this.initializeItems()
   }
-
+  initializeItems() {
+    this.fireProvider.getShoppingItems().then((response) => {
+      response.valueChanges().subscribe((list) => {
+        this.admissionRequirements = list
+      })
+    })
+    this.fireProvider.getStartDate().then((response) => {
+      response.valueChanges().subscribe((date => {
+        this.programStartInfo = date
+      }))
+    })
+  }
 }

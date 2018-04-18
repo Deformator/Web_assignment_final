@@ -11,8 +11,15 @@ import { ProfessorsListPage } from '../pages/professors-list/professors-list';
 import { ProfessorDetailPage } from '../pages/professor-detail/professor-detail';
 import { ClassDetailPage } from '../pages/class-detail/class-detail';
 
+import { HttpModule } from '@angular/http';
+import { AngularFireModule } from 'angularfire2';
+import { firebaseConfig } from '../../config';
+import { FirebaseProvider } from './../providers/firebase/firebase';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
+
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { HttpClient } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -27,7 +34,10 @@ import { SplashScreen } from '@ionic-native/splash-screen';
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    HttpModule,
+    AngularFireDatabaseModule,
+    AngularFireModule.initializeApp(firebaseConfig)
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -43,7 +53,9 @@ import { SplashScreen } from '@ionic-native/splash-screen';
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    FirebaseProvider,
+    HttpClient
   ]
 })
 export class AppModule {}
