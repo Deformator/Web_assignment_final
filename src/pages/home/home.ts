@@ -16,16 +16,20 @@ export class HomePage {
   constructor(private fireProvider: FirebaseProvider, public navCtrl: NavController) {
     this.initializeItems()
   }
+
+
   initializeItems() {
     this.fireProvider.getShoppingItems().then((response) => {
       response.valueChanges().subscribe((list) => {
         this.admissionRequirements = list
       })
     })
+    
     this.fireProvider.getStartDate().then((response) => {
       response.valueChanges().subscribe((date => {
         this.programStartInfo = date
       }))
     })
   }
+
 }

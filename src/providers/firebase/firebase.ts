@@ -22,4 +22,16 @@ export class FirebaseProvider {
     return Promise.resolve(this.afd.object('startDate'));
   }
 
+  getClassesForSemester(semesterId: string){
+    return Promise.resolve(this.afd.object('/semesters/' + semesterId + '/classes/'));
+  }
+
+  getClassByID(ent: string){
+    return Promise.resolve(this.afd.object('/classes/' + ent))
+  }
+
+  getSemesters(){
+    return Promise.resolve(this.afd.list('semesters'))
+  }
+
 }
