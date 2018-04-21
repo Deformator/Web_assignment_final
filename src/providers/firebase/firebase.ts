@@ -34,4 +34,12 @@ export class FirebaseProvider {
     return Promise.resolve(this.afd.list('semesters'))
   }
 
+  getFeedbacks(){
+    return Promise.resolve(this.afd.list('feedback'))
+  }
+
+  addFeedback(feedback: Object){
+    return Promise.resolve(this.afd.list('/feedback/').push(feedback))
+  }
+
 }

@@ -9,11 +9,11 @@
 <ion-content padding>
   <ion-item>
     <ion-label color="primary" floating>Name</ion-label>
-    <ion-input type="text"></ion-input>
+    <ion-input type="text" [(ngModel)]='feedback.name'></ion-input>
   </ion-item>
   <ion-item>
     <ion-label color="primary" floating>Your Feedback</ion-label>
-    <ion-input type="text"></ion-input>
+    <ion-input type="text" [(ngModel)]='feedback.body'></ion-input>
   
   </ion-item>
 <ion-item no-lines>
@@ -26,7 +26,7 @@
       </ion-card-header>
       <ion-card-content>
         <ion-item>
-          <h3>{{feedback.description}}</h3>
+          <h3 text-wrap>{{feedback.body}}</h3>
           <p text-right>{{feedback.time}}</p>
         </ion-item>
       </ion-card-content>
