@@ -7,18 +7,20 @@
 </ion-header>
 
 <ion-content padding>
+    <form [formGroup]="feedback" (ngSubmit)="sendFeedback()">
   <ion-item>
     <ion-label color="primary" floating>Name</ion-label>
-    <ion-input type="text" [(ngModel)]='feedback.name'></ion-input>
+    <ion-input type="text" formControlName = 'name'></ion-input>
   </ion-item>
   <ion-item>
     <ion-label color="primary" floating>Your Feedback</ion-label>
-    <ion-input type="text" [(ngModel)]='feedback.body'></ion-input>
+    <ion-input type="text" formControlName = 'body'></ion-input>
   
   </ion-item>
 <ion-item no-lines>
-    <button item-right ion-button default (click)='sendFeedback()'>Send</button>
+    <button item-right ion-button default type="submit" [disabled]="!feedback.valid">Send</button>
 </ion-item>
+</form>
   <ion-list padding-top>
     <ion-card *ngFor='let feedback of allFeedbacks'>
       <ion-card-header>
