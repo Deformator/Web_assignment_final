@@ -1,6 +1,7 @@
 // import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase } from "angularfire2/database"
+import { AngularFireStorage } from 'angularfire2/storage';
 /*
   Generated class for the FirebaseProvider provider.
 
@@ -10,7 +11,7 @@ import { AngularFireDatabase } from "angularfire2/database"
 @Injectable()
 export class FirebaseProvider {
 
-  constructor(public afd: AngularFireDatabase) {
+  constructor(public afs: AngularFireStorage, public afd: AngularFireDatabase) {
    
   }
 
@@ -40,6 +41,10 @@ export class FirebaseProvider {
 
   addFeedback(feedback: Object){
     return Promise.resolve(this.afd.list('/feedback/').push(feedback))
+  }
+
+  getImage(imageName: string){
+    return Promise.resolve(this.afs.ref(imageName))
   }
 
 }

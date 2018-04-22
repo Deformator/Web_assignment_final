@@ -10,6 +10,7 @@ import { FirebaseProvider } from '../../providers/firebase/firebase';
 export class HomePage {
 
   admissionRequirements = [];
+  homeImgSrc = ''
 
   programStartInfo: any;
 
@@ -29,6 +30,12 @@ export class HomePage {
       response.valueChanges().subscribe((date => {
         this.programStartInfo = date
       }))
+    })
+
+    this.fireProvider.getImage("home.jpg").then((image)=>{
+      image.getDownloadURL().subscribe(url=>{
+        this.homeImgSrc = url
+      })
     })
   }
 
