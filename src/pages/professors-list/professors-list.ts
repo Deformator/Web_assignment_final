@@ -54,27 +54,6 @@ export class ProfessorsListPage {
         });
       })
     })
-
-    //  this.professorsList = [
-    //   {
-    //     name: 'Przemyslaw Pawluk',
-    //     img: 'assets/imgs/logo.png',
-    //     class: 'Web Development'
-
-    //   },
-    //   {
-    //     name: 'Tom',
-    //     img: 'assets/imgs/logo.png',
-    //     class: 'IOS Development'
-
-    //   },
-    //   {
-    //     name: 'Viktor Zaytsev',
-    //     img: 'assets/imgs/logo.png',
-    //     class: 'Android Development'
-
-    //   }
-    // ];
   }
 
   getItems(ev: any) {

@@ -15,6 +15,7 @@ professor = {}
 
   constructor(private fireProvider: FirebaseProvider, public navCtrl: NavController, public navParams: NavParams) {
     this.professor = this.navParams.get('professor')
+    console.log(this.professor)
   }
 
   ionViewDidLoad() {

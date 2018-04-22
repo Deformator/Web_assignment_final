@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { FirebaseProvider } from '../../providers/firebase/firebase';
+import { ProfessorDetailPage } from '../professor-detail/professor-detail';
 
 
 
@@ -11,8 +12,10 @@ import { FirebaseProvider } from '../../providers/firebase/firebase';
 })
 export class ClassDetailPage {
 
-  class = {}
-  id =''
+  class = {};
+  professor = {};
+  id ='';
+
 
   constructor(private fireProvider: FirebaseProvider, public navCtrl: NavController, public navParams: NavParams) {
     this.id = this.navParams.get('class')
@@ -20,7 +23,7 @@ export class ClassDetailPage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad ClassDetailPage');
+
   }
 
   initializeItems(){
@@ -28,6 +31,27 @@ export class ClassDetailPage {
       response.valueChanges().subscribe((lecture)=>{
         this.class = lecture
       })
+    })
+
+    this.fireProvider.getProfessorByClassId(this.id, (professorObj)=>{
+      this.fireProvider.getProfessorPhotoByProfessorId(professorObj.key, (photoSrc)=>{
+        this.fireProvider.getClassesByProfessorId(professorObj.key, (lectures)=>{
+          this.professor = {
+            name: professorObj.payload.val().name,
+            img: photoSrc,
+            description: professorObj.payload.val().description,
+            class: lectures
+          }
+        })
+       
+        console.log(this.professor)
+      })     
+    })
+  }
+
+  goToProfessorDetailPage(){
+    this.navCtrl.push(ProfessorDetailPage, {
+      professor: this.professor
     })
   }
 

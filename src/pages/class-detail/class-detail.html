@@ -16,7 +16,14 @@
         <ion-card-content>
           <ion-item>
            <p text-wrap>{{class.description}}</p>
-            </ion-item>         
+            </ion-item> 
+
+            <ion-item (click)="goToProfessorDetailPage()">
+                <ion-avatar item-start>
+                  <img src='{{professor.img}}'>
+                </ion-avatar>
+                <h2>{{professor.name}}</h2>           
+              </ion-item>  
         </ion-card-content>
       </ion-card>
 </ion-content>
