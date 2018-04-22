@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
-import { ProfessorDetailPage } from '../professor-detail/professor-detail'
+import { ProfessorDetailPage } from '../professor-detail/professor-detail';
+import { FirebaseProvider } from '../../providers/firebase/firebase';
+
 
 @IonicPage()
 @Component({
@@ -14,41 +16,65 @@ export class ProfessorsListPage {
   searchQuery: string = '';
   professorsList = [];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(private fireProvider: FirebaseProvider, public navCtrl: NavController, public navParams: NavParams) {
     this.initializeItems()
   }
 
   ionViewDidLoad() {
-  
+
   }
 
-  goToProfessorDetailPage(professorDetails){
+  goToProfessorDetailPage(professorDetails) {
     this.navCtrl.push(ProfessorDetailPage, {
-      professor : professorDetails
+      professor: professorDetails
     })
   }
 
   initializeItems() {
-   this.professorsList = [
-    {
-      name: 'Przemyslaw Pawluk',
-      img: 'assets/imgs/logo.png',
-      class: 'Web Development'
+    this.fireProvider.getProfessors().then((response) => {
+      response.snapshotChanges().subscribe((professors) => {
+        professors.forEach(professor => {
+          let professorKey = professor.key;
+          let professorName = professor.payload.val().name;
+          let lectures = [];
+          let imageSrc = '';
+          let description = professor.payload.val().description;
+          this.fireProvider.getClassesByProfessorId(professorKey, (classes) => {
+            lectures = classes
+          })
+          this.fireProvider.getProfessorPhotoByProfessorId(professorKey, (photoSrc) => {
+            imageSrc = photoSrc
+            this.professorsList.push({
+              name: professorName,
+              img: imageSrc,
+              class: lectures,
+              description: description
+            })
+          })
+        });
+      })
+    })
 
-    },
-    {
-      name: 'Tom',
-      img: 'assets/imgs/logo.png',
-      class: 'IOS Development'
-      
-    },
-    {
-      name: 'Viktor Zaytsev',
-      img: 'assets/imgs/logo.png',
-      class: 'Android Development'
-      
-    }
-  ];
+    //  this.professorsList = [
+    //   {
+    //     name: 'Przemyslaw Pawluk',
+    //     img: 'assets/imgs/logo.png',
+    //     class: 'Web Development'
+
+    //   },
+    //   {
+    //     name: 'Tom',
+    //     img: 'assets/imgs/logo.png',
+    //     class: 'IOS Development'
+
+    //   },
+    //   {
+    //     name: 'Viktor Zaytsev',
+    //     img: 'assets/imgs/logo.png',
+    //     class: 'Android Development'
+
+    //   }
+    // ];
   }
 
   getItems(ev: any) {

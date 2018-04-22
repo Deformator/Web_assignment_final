@@ -47,4 +47,34 @@ export class FirebaseProvider {
     return Promise.resolve(this.afs.ref(imageName))
   }
 
+  getProfessorPhotoByProfessorId(professorId: string, clb){
+     Promise.resolve(this.afd.object('/professors/' + professorId)).then((response)=>{
+      response.valueChanges().subscribe((professorObj)=>{
+        Promise.resolve(this.getImage(professorObj.photo)).then((image)=>{
+          image.getDownloadURL().subscribe(url=>{
+            clb(url)
+          })
+        })
+      })
+    })
+  }
+
+  getProfessors(){
+    return Promise.resolve(this.afd.list('professors'))
+  }
+
+  getClassesByProfessorId(professorID: string, clb){ 
+    Promise.resolve(this.afd.list('/classes/')).then((response)=>{
+      response.valueChanges().subscribe((classes)=>{
+        let classesArr = [];
+        classes.forEach(lecture => {
+         if(lecture.professor === professorID){
+          classesArr.push(lecture.name)
+         }
+        });
+        clb(classesArr) 
+      })
+    })
+  }
+
 }
