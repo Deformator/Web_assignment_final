@@ -15,6 +15,7 @@ export class ProfessorsListPage {
   searchIsVisible = false;
   searchQuery: string = '';
   professorsList = [];
+  sortedProfessorsList = [];
 
   constructor(private fireProvider: FirebaseProvider, public navCtrl: NavController, public navParams: NavParams) {
     this.initializeItems()
@@ -50,6 +51,7 @@ export class ProfessorsListPage {
               class: lectures,
               description: description
             })
+            this.sortedProfessorsList = this.professorsList
           })
         });
       })
@@ -58,14 +60,13 @@ export class ProfessorsListPage {
 
   getItems(ev: any) {
     // Reset items back to all of the items
-    this.initializeItems();
-
+    this.sortedProfessorsList = this.professorsList
     // set val to the value of the searchbar
     let val = ev.target.value;
 
     // if the value is an empty string don't filter the items
     if (val && val.trim() != '') {
-      this.professorsList = this.professorsList.filter((professor) => {
+      this.sortedProfessorsList = this.sortedProfessorsList.filter((professor) => {
         return (professor.name.toLowerCase().indexOf(val.toLowerCase()) > -1);
       })
     }
