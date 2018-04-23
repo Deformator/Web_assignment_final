@@ -14,7 +14,7 @@
         <ion-avatar item-start>
           <img src='{{professor.img}}'>
         </ion-avatar>
-        <h3> {{professor.name}}</h3>
+        <h3 ion-text> {{professor.name}}</h3>
       </ion-item>
       <ion-item>
           <h4>Classes:</h4>
@@ -25,7 +25,10 @@
                  </ul>
       </ion-item>
       <ion-item>
-          <h4>Info:</h4>
+        <ion-row padding-bottom>
+            <h4 ion-text>Info:</h4>
+        </ion-row>
+         
           <p text-wrap>{{professor.description}}</p>
       </ion-item>
      

@@ -11,11 +11,11 @@
 
 </ion-header>
 
-<ion-content padding class="global-styles">
+<ion-content padding class="global-styles slide-in-both-ways" >
     <ion-searchbar *ngIf='searchIsVisible' (ionInput)="getItems($event)">
     
   </ion-searchbar>
-    <ion-list no-lines>
+    <ion-list no-lines >
         <ion-item class="global-styles" *ngFor='let professor of sortedProfessorsList' (click)='goToProfessorDetailPage(professor)'>
           <ion-avatar item-start>
             <img src='{{professor.img}}'>

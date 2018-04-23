@@ -22,9 +22,23 @@
 
 .custom-button{
     background-color: #d4df38;
+    color:black;
 }
 
-.custom-card{
-   
+.toolbar-background {
+    background-color: #d4df38;
+  }
+
+  .tabs .tabbar {
+    background-color:  #d4df38;
+    color: white;
 }
 
+.slide-in-both-ways {
+    -webkit-animation: slideInBothWays ease-in 1;
+   animation: slideInBothWays ease-in 1;
+   -webkit-animation-fill-mode: forwards;
+   animation-fill-mode: forwards;
+   -webkit-animation-duration: 750ms;
+   animation-duration: 750ms;
+ }
