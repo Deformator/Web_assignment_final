@@ -15,7 +15,7 @@ export class FirebaseProvider {
    
   }
 
-  getShoppingItems() {
+  getAdmissionReq() {
     return Promise.resolve(this.afd.list('admissionReq'));
   }
 
@@ -50,7 +50,8 @@ export class FirebaseProvider {
   getProfessorPhotoByProfessorId(professorId: string, clb){
      Promise.resolve(this.afd.object('/professors/' + professorId)).then((response)=>{
       response.valueChanges().subscribe((professorObj)=>{
-        Promise.resolve(this.getImage(professorObj.photo)).then((image)=>{
+        var object: any = professorObj
+        Promise.resolve(this.getImage(object.photo)).then((image)=>{
           image.getDownloadURL().subscribe(url=>{
             clb(url)
           })
@@ -67,9 +68,10 @@ export class FirebaseProvider {
     Promise.resolve(this.afd.list('/classes/')).then((response)=>{
       response.valueChanges().subscribe((classes)=>{
         let classesArr = [];
-        classes.forEach(lecture => {
-         if(lecture.professor === professorID){
-          classesArr.push(lecture.name)
+        classes.forEach((lecture) => {
+          var object: any = lecture
+         if(object.professor === professorID){
+          classesArr.push(object.name)
          }
         });
         clb(classesArr) 
@@ -80,7 +82,8 @@ export class FirebaseProvider {
   getProfessorByClassId(classId: string, clb){
     Promise.resolve(this.afd.object('/classes/' + classId)).then((response)=>{
       response.valueChanges().subscribe((lecture)=>{
-        Promise.resolve(this.afd.object('/professors/' + lecture.professor)).then((response2)=>{
+        var object: any = lecture
+        Promise.resolve(this.afd.object('/professors/' + object.professor)).then((response2)=>{
           response2.snapshotChanges().subscribe((professor)=>{
             clb(professor)
           })

@@ -7,19 +7,28 @@
 </ion-header>
 
 
-<ion-content padding>
-    <ion-card>
-        <ion-card-header>
-          {{professor.name}}
-        </ion-card-header>
-        <ion-card-content>
-          <ion-item>
-            <ion-avatar item-start>
-                <img src='{{professor.img}}'>
-              </ion-avatar>
-              <h3 text-wrap>{{professor.class}}</h3>
-              <p text-wrap>{{professor.description}}</p>
-            </ion-item>         
-        </ion-card-content>
-      </ion-card>
+<ion-content padding class="global-styles">
+  <ion-card>
+    <ion-card-content>
+      <ion-item>
+        <ion-avatar item-start>
+          <img src='{{professor.img}}'>
+        </ion-avatar>
+        <h3> {{professor.name}}</h3>
+      </ion-item>
+      <ion-item>
+          <h4>Classes:</h4>
+               <ul>
+                   <li *ngFor='let class of professor.class' text-wrap style="font-size: 15px">
+                       {{class}}
+                   </li>
+                 </ul>
+      </ion-item>
+      <ion-item>
+          <h4>Info:</h4>
+          <p text-wrap>{{professor.description}}</p>
+      </ion-item>
+     
+    </ion-card-content>
+  </ion-card>
 </ion-content>

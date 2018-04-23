@@ -44,7 +44,6 @@ export class ClassDetailPage {
           }
         })
        
-        console.log(this.professor)
       })     
     })
   }

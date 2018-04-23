@@ -15,6 +15,7 @@ export class CourseDetailsPage {
   outlineIsVisible = false;
 
   programOutline = [];
+  image = '';
 
   constructor(private fireProvider: FirebaseProvider, public navCtrl: NavController) {
     this.initializeItems()
@@ -23,34 +24,37 @@ export class CourseDetailsPage {
 
   initializeItems() {
 
-    this.fireProvider.getSemesters().then((response)=>{
-      response.snapshotChanges().subscribe((semestersList)=>{
-       semestersList.forEach(element => {
+    this.fireProvider.getSemesters().then((response) => {
+      response.snapshotChanges().subscribe((semestersList) => {
+        semestersList.forEach(element => {
           let sem = new Semester()
           sem.title = element.payload.val().name
-         
+
           this.fireProvider.getClassesForSemester(element.key).then((response) => {
             response.valueChanges().subscribe((lectures) => {
               let cKeys = Object.keys(lectures)
               for (let ent of cKeys) {
                 this.fireProvider.getClassByID(ent).then((response) => {
                   response.snapshotChanges().subscribe(res => {
-                   sem.classes.push({name: res.payload.val().name, id: res.key})
-                    //  console.log(sem)
-  
+                    sem.classes.push({ name: res.payload.val().name, id: res.key })
+
                   })
-      
+
                 })
               }
             })
-      
+
           })
           this.programOutline.push(sem)
+        })
+      })
+    });
+
+    this.fireProvider.getImage('courseOutline.jpg').then((image)=>{
+      image.getDownloadURL().subscribe(url=>{
+       this.image = url
       })
     })
-       });
-        
-    // console.log(this.programOutline)
 
   }
 

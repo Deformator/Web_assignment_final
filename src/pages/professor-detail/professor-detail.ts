@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { FirebaseProvider } from '../../providers/firebase/firebase';
 
 
 
@@ -13,9 +12,8 @@ export class ProfessorDetailPage {
 
 professor = {}
 
-  constructor(private fireProvider: FirebaseProvider, public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams) {
     this.professor = this.navParams.get('professor')
-    console.log(this.professor)
   }
 
   ionViewDidLoad() {

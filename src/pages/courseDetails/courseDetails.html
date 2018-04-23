@@ -6,10 +6,12 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content>
+<ion-content class="global-styles">
   <ion-grid>
-    <ion-row>
-      <ion-col>
+    <ion-row padding>
+      <img src="{{image}}">
+    </ion-row>
+    <ion-row padding>
         <p>Centennial College's Mobile Applications Development program ensures you develop the necessary skills to enter the
           fast-growing mobile software applications ("apps") development market. In this graduate certificate program's Mobile
           Application Development courses, you learn to develop mobile apps for Google Android and Apple iOS devices. In
@@ -17,29 +19,22 @@
           technologies, user interface (UI), user experience (UX), emerging technologies and more. The knowledge you gain
           in this college technology program applied in a capstone project to develop mobile apps for business, gaming, health
           care, social networks, the internet of things and other areas of interest to which your imaginations takes you.</p>
-      </ion-col>
     </ion-row>
     <ion-row>
-      <ion-col>
-        <button ion-button full (click)='outlineIsVisible=!outlineIsVisible'>Course Outline</button>
-      </ion-col>
+        <button class="custom-button" ion-button full (click)='outlineIsVisible=!outlineIsVisible'>Course Outline</button>
     </ion-row>
     <ion-row *ngIf="outlineIsVisible">
-      <ion-col>
-        <ion-list *ngFor='let semester of programOutline'>
+        <ion-list padding *ngFor='let semester of programOutline'>
           <ion-list-header color='light'>
             <h6>{{semester.title}}</h6>
           </ion-list-header>
           <ion-item *ngFor='let class of semester.classes' (click)='goToClassDetailPage(class.id)'>
-            <button ion-item no-lines>{{class.name}}</button>
+            <button text-wrap class="class-row" ion-item no-lines >{{class.name}}</button>
           </ion-item>
         </ion-list>
-      </ion-col>
     </ion-row>
     <ion-row>
-      <ion-col>
-        <button ion-button full (click)='goToProfessorsListPage()'>Your Professors</button>
-      </ion-col>
+        <button class="custom-button" ion-button full (click)='goToProfessorsListPage()'>Your Professors</button>
     </ion-row>
   </ion-grid>
 </ion-content>

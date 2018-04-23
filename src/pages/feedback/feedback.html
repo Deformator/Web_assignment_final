@@ -6,28 +6,28 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content class="global-styles">
     <form [formGroup]="feedback" (ngSubmit)="sendFeedback()">
-  <ion-item>
-    <ion-label color="primary" floating>Name</ion-label>
+  <ion-item class="global-styles">
+    <ion-label style="color: #d4df38" color="primary" floating>Name</ion-label>
     <ion-input type="text" formControlName = 'name'></ion-input>
   </ion-item>
-  <ion-item>
-    <ion-label color="primary" floating>Your Feedback</ion-label>
+  <ion-item class="global-styles"> 
+    <ion-label style="color: #d4df38" color="primary" floating>Your Feedback</ion-label>
     <ion-input type="text" formControlName = 'body'></ion-input>
   
   </ion-item>
-<ion-item no-lines>
-    <button item-right ion-button default type="submit" [disabled]="!feedback.valid">Send</button>
+<ion-item no-lines class="global-styles">
+    <button class="custom-button" item-right ion-button default type="submit" [disabled]="!feedback.valid">Send</button>
 </ion-item>
 </form>
   <ion-list padding-top>
-    <ion-card *ngFor='let feedback of allFeedbacks'>
+    <ion-card *ngFor='let feedback of allFeedbacks' class="custom-card">
       <ion-card-header>
         <h2>{{feedback.name}}</h2>
       </ion-card-header>
-      <ion-card-content>
-        <ion-item>
+      <ion-card-content >
+        <ion-item style="background-color: d4df38">
           <h3 text-wrap>{{feedback.body}}</h3>
           <p text-right>{{feedback.time}}</p>
         </ion-item>

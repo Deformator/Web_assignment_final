@@ -10,7 +10,8 @@ import { FirebaseProvider } from '../../providers/firebase/firebase';
 export class HomePage {
 
   admissionRequirements = [];
-  homeImgSrc = ''
+  homeImgSrc = ['slide1.jpg', 'slide2.jpg', 'slide3.jpg'];
+  images = [];
 
   programStartInfo: any;
 
@@ -20,7 +21,7 @@ export class HomePage {
 
 
   initializeItems() {
-    this.fireProvider.getShoppingItems().then((response) => {
+    this.fireProvider.getAdmissionReq().then((response) => {
       response.valueChanges().subscribe((list) => {
         this.admissionRequirements = list
       })
@@ -32,11 +33,15 @@ export class HomePage {
       }))
     })
 
-    this.fireProvider.getImage("home.jpg").then((image)=>{
-      image.getDownloadURL().subscribe(url=>{
-        this.homeImgSrc = url
+    this.homeImgSrc.forEach(imageName => {
+      this.fireProvider.getImage('/home_slides/' + imageName).then((image)=>{
+        image.getDownloadURL().subscribe(url=>{
+         this.images.push(url)
+        })
+       
       })
-    })
+    });
+
   }
 
 }

@@ -1,59 +1,49 @@
 <ion-header>
-  <ion-navbar>
+  <ion-navbar >
     <ion-title>Home</ion-title>
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-  <ion-grid>
-    <ion-row>
-      <ion-col>
+<ion-content class="global-styles">
+  <ion-grid >
+    <ion-row class="custom-row">
         <h3>Application Mobile Development</h3>
-      </ion-col>
     </ion-row>
     <ion-row>
-      <ion-col>
-        <p>
+        <p padding>
           Centennial College's Mobile Applications Development program ensures you develop the necessary skills to enter the fast-growing
           mobile software applications ("apps") development market.
         </p>
-      </ion-col>
     </ion-row>
 
     <ion-row>
-      <ion-col>
-        <ion-img src="{{homeImgSrc}}"></ion-img>
-      </ion-col>
+        <ion-slides class="image-slider" pager>
+            <ion-slide *ngFor ='let image of images'>
+              <img src="{{image}}">
+            </ion-slide>      
+            </ion-slides>   
     </ion-row>
-    <ion-row>
-      <ion-col>
+    <ion-row class="custom-row">
         <h4>Program Start</h4>
-      </ion-col>
     </ion-row>
     <ion-row>
-      <ion-col>
           <ul>
               <li>
                {{programStartInfo}}
               </li>
             </ul>
-      </ion-col>
       </ion-row>
-    <ion-row>
-      <ion-col>
+    <ion-row class="custom-row">
           <h4>Admission Requirements</h4>
-      </ion-col>
     </ion-row>
 
     <ion-row>
-      <ion-col>
           <ul>
             
               <li *ngFor="let req of admissionRequirements">
                 <p>{{req}}</p>
               </li>
             </ul>
-      </ion-col>
     </ion-row>
     
 
