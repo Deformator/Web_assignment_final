@@ -36,7 +36,7 @@ export class CourseDetailsPage {
               for (let ent of cKeys) {
                 this.fireProvider.getClassByID(ent).then((response) => {
                   response.snapshotChanges().subscribe(res => {
-                    sem.classes.push({ name: res.payload.val().name, id: res.key })
+                    sem.classes.push({ name: res.payload.val().name, id: res.key, code: res.payload.val().code })
 
                   })
 

@@ -31,7 +31,7 @@
             {{semester.title}}
           </ion-list-header>
           <ion-item *ngFor='let class of semester.classes' (click)='goToClassDetailPage(class.id)'>
-            <button text-wrap class="class-row" ion-item no-lines >{{class.name}}</button>
+            <button text-wrap class="class-row" ion-item no-lines >{{class.code}}: {{class.name}}</button>
           </ion-item>
         </ion-list>
     </ion-row>
